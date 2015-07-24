@@ -1,3 +1,4 @@
+
 ## Put comments here that give an overall description of what your
 ## functions do
 
@@ -5,24 +6,22 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   
-  m <- x$getmean()
+  m <- x$getinv()
   if(!is.null(m)) {
     message("getting cached data")
     return(m)
   }
   data <- x$get()
   m <- solve(data)
-  x$setmean(m)
+  x$setinv(m)
   m
 
+  
 }
-
-
-
 
 ## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x) {
         ## Return a matrix that is the inverse of 'x'
   
   m <- NULL
@@ -31,9 +30,9 @@ cacheSolve <- function(x, ...) {
     m <<- NULL
   }
   get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
+  setinv <- function(matrix) m <<- matrix
+  getinv <- function() m
   list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
+       setinv = setinv,
+       getinv = getinv)
 }
